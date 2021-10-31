@@ -31,10 +31,11 @@
           </div>
           <span v-else class="legend--empty"> Список пуст </span>
         </div>
+        <div class="legend__date">
+          {{ formatedDate }}
+        </div>
         <div class="legend__chart">
-          <div class="legend__chart">
-            <PieChart ref="chart" />
-          </div>
+          <PieChart ref="chart" />
         </div>
       </div>
       <div v-else class="profile">
@@ -49,6 +50,7 @@
 <script>
 import Draggable from "vuedraggable";
 import { Doughnut as PieChart } from "vue-chartjs";
+import { format } from "date-fns";
 import LegendItem from "./SideMenu/LegendItem.vue";
 import PersonCard from "./SideMenu/PersonCard.vue";
 import legend from "@/assets/data/legend.json";
@@ -74,6 +76,11 @@ export default {
     return {
       legend: [],
     };
+  },
+  computed: {
+    formatedDate() {
+      return format(new Date(), "dd.MM.yyyy HH:mm");
+    },
   },
   created() {
     this.loadLegend();
@@ -179,6 +186,11 @@ h3 {
 .content .legend .legend__data {
   display: flex;
   /* height: 100%; */
+}
+
+.content .legend .legend__date {
+  text-align: center;
+  font-size: 1.4em;
 }
 
 .content .legend .legend__items {
