@@ -8,14 +8,25 @@
         <b>{{ person.name }} ({{ person.age }})</b>
       </div>
 
-      <div class="person__info-email">Почта: {{ person.email }}</div>
-      <div class="person__info-email">Дата регистрации: {{ formatedDate }}</div>
-      <div class="person__info-about">О себе: {{ person.about }}</div>
+      <div class="person__info-email">
+        <h4>Почта:</h4>
+        {{ person.email }}
+      </div>
+      <div class="person__info-email">
+        <h4>Дата регистрации:</h4>
+        {{ formatedDate }}
+      </div>
+      <div class="person__info-about">
+        <h4>О себе:</h4>
+        {{ person.about }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { format } from "date-fns";
+
 export default {
   props: {
     person: {
@@ -25,7 +36,7 @@ export default {
   },
   computed: {
     formatedDate() {
-      return this.person.registered;
+      return format(new Date(this.person.registered), "dd.MM.yyyy HH:mm");
     },
   },
 };

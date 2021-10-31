@@ -3,7 +3,7 @@
     <h3>Карта офиса</h3>
 
     <div v-if="!isLoading" class="map-root">
-      <MapSVG ref="svg" />
+      <MapSVG ref="svg" @click="mapClick" />
       <Table v-show="false" ref="table" />
     </div>
     <div v-else>Loading...</div>
@@ -77,6 +77,10 @@ export default {
               "transparent"
           );
       });
+    },
+    mapClick(e) {
+      const targetId = e.target.closest(".employer-place")?.id;
+      this.$emit("mapClick", targetId);
     },
   },
 };
