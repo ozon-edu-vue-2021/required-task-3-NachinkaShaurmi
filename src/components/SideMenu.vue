@@ -171,13 +171,14 @@ h3 {
 .content .legend {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 30px;
+  /* justify-content: space-between; */
   height: 100%;
 }
 
 .content .legend .legend__data {
   display: flex;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .content .legend .legend__items {
